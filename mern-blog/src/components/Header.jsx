@@ -32,7 +32,7 @@ const Header = () => {
             <img src={images.logo} alt="logo" width="115 px" />
           </div>
           <div className="gap-x-9">
-            <ul className="flex gap-x-5 font-semibold">
+            <ul className="flex gap-x-2 font-semibold">
               {navItemsInfo.map((item) => (
                 <NavItem key={item.name} name={item.name}/>
               ))}
