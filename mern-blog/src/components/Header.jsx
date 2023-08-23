@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import React from 'react';
 import {images} from '../constants';
 
@@ -24,17 +25,28 @@ const NavItem = ({name}) => {
 };
 
 const Header = () => {
+
+  //define a state for making navItems visible
+  const [navIsVisible, setNavIsVisible] = useState(false);
+  const navVisibilityHandler = () => {
+    setNavIsVisible((curState) =>{
+      return !curState;
+    })
+  }
+
   return (
     <div>
       <section>
         <header className="container mx-auto px-5 flex justify-between py-4 items-center">
           <div>
-            <img src={images.logo} alt="logo" width="115 px" />
+            <img className="w-16" src={images.logo} alt="logo" />
           </div>
-          <div className="gap-x-9">
+          <div className={`${
+            navIsVisible ? "right-0" : "-right-full"
+            } flex flex-col w-full lg:w-auto justify-center lg:justify-end lg:flex-row fixed top-0 bottom-0 lg:static gap-x-9 items-centered`}>
             <ul className="flex gap-x-2 font-semibold">
               {navItemsInfo.map((item) => (
-                <NavItem key={item.name} name={item.name}/>
+                <NavItem key={item.name} name={item.name} />
               ))}
               <button className="border-2 border-orange-800 px-6 py-2 rounded-full text-orange-800 font-semibold hover:bg-orange-300 hover:text-white hover:border-orange-300 transition-all duration-200">
                 Sign In
